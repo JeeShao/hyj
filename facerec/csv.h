@@ -23,7 +23,7 @@ void judgefile(string dirname_str) {
 	}
 	else
 	{
-		cout <<dirname<< "目录已覆盖!"<<endl;
+		cout <<"\n"<<dirname<< "目录已覆盖!"<<endl;
 	}
 }
 
@@ -95,10 +95,18 @@ static void read_csv(const string& csv_addr, vector<Mat>& images, vector<int>& l
 		getline(liness, path, separator);
 		getline(liness, label);
 		if (!path.empty() && !label.empty()) {
-			//cout << path << ";" << label<<endl;
-			images.push_back(imread(path, 0));
-			labels.push_back(atoi(label.c_str()));
+			//try {
+				images.push_back(imread(path, 0));
+				labels.push_back(atoi(label.c_str()));
+			//}
+			//catch (cv::Exception& e)
+			//{
+			//	cerr << "文件不存在:"<< path <<"\n"<< e.msg << endl;
+			//	// 文件有问题，我们啥也做不了了，退出了  
+			//	exit(1);
+			//}
 		}
+		
 	}
 }
 
@@ -108,7 +116,6 @@ int trainFile() {
 	string path = ".\\pic";
 	string csv_addr = ".\\train\\faces.csv";
 	vector<string> cates = dir(path); //人脸文件目录路径容器./pic/1; ./pic/2……
-
 	vector<string> images;
 	//图片ID  
 	vector<int> labels;
@@ -139,6 +146,5 @@ int trainFile() {
 	time_t end = clock();
 	double time = (double)(end - start) / CLOCKS_PER_SEC; //计算函数使用时间，以秒计  
 	cout << "csv文件写入耗时： " << time << " s" << endl;
-	cin.get();
 	return 0;
 }

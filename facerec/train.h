@@ -29,6 +29,7 @@ void detect() {
 		exit(1);
 	}
 	cout << "请输入用户名（Enter结束）:";
+
 	getline(cin, name);
 	string dirname_str = format("./pic/%s", name);
 	judgefile(dirname_str); //判断文件是否存在 不存在则创建
@@ -83,6 +84,7 @@ void detect() {
 
 //训练人脸 生成模型
 void trainFace() {
+	trainFile();
 	//读取你的CSV文件路径.  
 	string csv_addr = ".\\train\\faces.csv";
 	// 2个容器来存放图像数据和对应的标签  
@@ -102,8 +104,9 @@ void trainFace() {
 	}
 	// 如果没有读取到足够图片，也退出.  
 	if (images.size() <= 1) {
-		string error_message = "This demo needs at least 2 images to work. Please add more images to your data set!";
+		string error_message = "图片太少，请添加更多人脸以训练!";
 		CV_Error(CV_StsError, error_message);
+		exit(1);
 	}
 	Ptr<face::FaceRecognizer> model = face::createEigenFaceRecognizer();
 	model->train(images, labels);
