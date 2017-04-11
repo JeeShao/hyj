@@ -80,12 +80,12 @@ void detect() {
 	cap.release();  //释放摄像头
 }
  //主程序
-int main() {
-	if (flag == 0) {
-		detect();
-	}
-	else{
-		trainFile();
-	}
-	}
+//int main() {
+//	if (flag == 0) {
+//		detect();
+//	}
+//	else{
+//		trainFile();
+//	}
+//	}
 

@@ -1,5 +1,5 @@
 #include <opencv2/opencv.hpp>  
-#include<opencv2/face.hpp>
+#include <opencv2/face/facerec.hpp>
 #include <iostream>  
 #include <fstream>  
 #include <sstream>  
@@ -7,7 +7,9 @@
 
 using namespace cv;
 using namespace std;
+using namespace face;
 
+/*
 static Mat norm_0_255(InputArray _src) {
 	Mat src = _src.getMat();
 	// 创建和返回一个归一化后的图像矩阵:  
@@ -25,6 +27,7 @@ static Mat norm_0_255(InputArray _src) {
 	}
 	return dst;
 }
+*/
 
 //使用CSV文件去读图像和标签，主要使用stringstream和getline方法  
 static void read_csv(const string& filename, vector<Mat>& images, vector<int>& labels, char separator = ';') {
@@ -45,13 +48,10 @@ static void read_csv(const string& filename, vector<Mat>& images, vector<int>& l
 	}
 }
 
-
 int main()
 {
-
 	//读取你的CSV文件路径.  
-	string csv_addr = "at.txt";
-
+	string csv_addr = ".\\train\\faces.csv";
 	// 2个容器来存放图像数据和对应的标签  
 	vector<Mat> images;
 	vector<int> labels;
@@ -91,17 +91,17 @@ int main()
 	// 如果你使用所有特征并且使用一个阈值，使用以下语句：  
 	//      cv::createEigenFaceRecognizer(0, 123.0);  
 
-	cv::Ptr<cv::FaceRecognizer> model = cv::createEigenFaceRecognizer();
+	Ptr<FaceRecognizer> model = createEigenFaceRecognizer();
 	model->train(images, labels);
-	model->save("MyFacePCAModel.xml");
+	//model->save("MyFacePCAModel.xml");
 
 	Ptr<FaceRecognizer> model1 = createFisherFaceRecognizer();
 	model1->train(images, labels);
-	model1->save("MyFaceFisherModel.xml");
+	//model1->save("MyFaceFisherModel.xml");
 
 	Ptr<FaceRecognizer> model2 = createLBPHFaceRecognizer();
 	model2->train(images, labels);
-	model2->save("MyFaceLBPHModel.xml");
+	//model2->save("MyFaceLBPHModel.xml");
 
 	// 下面对测试图像进行预测，predictedLabel是预测标签结果  
 	int predictedLabel = model->predict(testSample);
@@ -120,6 +120,6 @@ int main()
 	cout << result_message1 << endl;
 	cout << result_message2 << endl;
 
-	waitKey(0);
+	getchar();
 	return 0;
 }

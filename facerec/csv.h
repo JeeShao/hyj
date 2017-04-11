@@ -1,9 +1,11 @@
 #pragma once
 #include <iostream>
+#include <fstream>
 #include <opencv2/opencv.hpp>
 #include <io.h>
 #include <stdlib.h>
 #include <direct.h>
+#include<ctime>
 using namespace cv;
 using namespace std;
 
