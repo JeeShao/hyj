@@ -1,5 +1,5 @@
 #include <opencv2/opencv.hpp>  
-#include <opencv2\contrib\contrib.hpp>
+#include<opencv2/face.hpp>
 #include <iostream>  
 #include <fstream>  
 #include <sstream>  
