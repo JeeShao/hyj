@@ -81,6 +81,7 @@ bool write_csv(const vector<string> images, const vector<int> labels, const char
 	return true;
 }
 
+
 //使用CSV文件去读图像和标签，主要使用stringstream和getline方法  
 static void read_csv(const string& csv_addr, vector<Mat>& images, vector<int>& labels, char separator = ';') {
 	std::ifstream file(csv_addr.c_str(), ifstream::in);

@@ -154,6 +154,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="csv.h" />
+    <ClInclude Include="recognize.h" />
+    <ClInclude Include="train.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

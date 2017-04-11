@@ -26,5 +26,11 @@
     <ClInclude Include="csv.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="recognize.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="train.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
