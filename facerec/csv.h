@@ -142,7 +142,11 @@ int trainFile() {
 	}
 	time_t start = clock();
 	//制作csv文件  
-	write_csv(images, labels, csv_addr.c_str());
+	if (!write_csv(images, labels, csv_addr.c_str())) {
+		cout << "csv文件写入失败!";
+			getchar();
+			exit(1);
+	};
 	time_t end = clock();
 	double time = (double)(end - start) / CLOCKS_PER_SEC; //计算函数使用时间，以秒计  
 	cout << "csv文件写入耗时： " << time << " s" << endl;
